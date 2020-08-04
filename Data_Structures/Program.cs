@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Data_Structures.UsersLinkedList;
+using System;
+
 
 namespace Data_Structures
 {
@@ -6,7 +8,12 @@ namespace Data_Structures
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+            LinkedList<int> ll = new LinkedList<int>();
+            ll.Add(1);
+            ll.Add(2);
+            Console.WriteLine(ll.Head.Value);
+            Console.WriteLine(ll.Tail.Value);
         }
     }
 }
