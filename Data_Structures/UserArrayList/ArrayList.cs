@@ -30,11 +30,32 @@ namespace Data_Structures.UserArrayList
             _items = _newArray;
         }
 
-        public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public T this[int index] 
+        { 
+            get
+            {
+                if (index < Count)
+                {
+                    return _items[index];
+                }
+                throw new IndexOutOfRangeException();
+            }
+            set 
+            {
+                if(index <Count)
+                {
+                    _items[index] = value;
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException();
+                }
+            }
+        }
 
         public int Count { get; private set; }
 
-        public bool IsReadOnly => throw new NotImplementedException();
+        public bool IsReadOnly => false;
 
         public void Add(T item)
         {
@@ -47,22 +68,26 @@ namespace Data_Structures.UserArrayList
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            _items = new T[0];
+            Count = 0;
         }
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            return IndexOf(item) != -1;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            Array.Copy(_items, 0, array, arrayIndex, Count);
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Count; i++)
+            {
+                yield return _items[i];
+            }
         }
 
         public int IndexOf(T item)
@@ -119,7 +144,7 @@ namespace Data_Structures.UserArrayList
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }
